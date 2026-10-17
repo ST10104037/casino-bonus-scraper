@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-10-17T19:11:41+00:00",
+  "source": "https://www.gambling.com/uk/online-casinos/bonus",
+  "model": "gemini-3.8-flash",
+  "casinos": [
+    {
+      "name": "Mr Vegas Casino",
+      "welcome_bonus": "100% up to £50 + 11 Free Spins",
+      "wagering_requirement": 10,
+      "min_deposit": "£10",
+      "source_url": "https://www.gambling.com/uk/online-casinos/bonus",
+      "review_url": "https://www.gambling.com/uk/online-casinos/reviews/mr-vegas",
+      "needs_review": false,
+      "review_notes": [],
+      "raw_text": "1 100% up to £50 + 11 Free Spins Mr Vegas Casino Review Visit Casino Compare Added GC Verified by Gambling.com Licensed and regulated by the UK Gambling Commission. This operator meets strict standards for player safety, fair play and secure payments. 18+. Gamble Responsibly. Gambleaware.org . The Welcome Bonus is only available to newly registered players who make a minimum initial deposit of £10. The welcome offer can be activated only once, when making your first deposit. In order to receive the maximum of £50 bonus, you will need to wager an amount equal to 10 times the value of your first initial deposit within 60 calendar days from the date on which the Welcome Bonus option has been activated under the 'My Bonuses' section of your account.. Full Terms Apply."
+    },
+    {
+      "name": "Mega Riches Casino",
+      "welcome_bonus": "100% Welcome Bonus up to £25 + 50 Chances to Become a Millionaire",
+      "wagering_requirement": 10,
+      "min_deposit": "£10",
+      "source_url": "https://www.gambling.com/uk/online-casinos/bonus",
+      "review_url": "https://www.gambling.com/uk/online-casinos/reviews/mega-riches",
+      "needs_review": false,
+      "review_notes": [],
+      "raw_text": "2 100% Welcome Bonus up to £25 + 50 Chances to Become a Millionaire Mega Riches Casino Review Visit Casino Compare Added GC Verified by Gambling.com Licensed and regulated by the UK Gambling Commission. This operator meets strict standards for player safety, fair play and secure payments. 18+. Gamble Responsibly. Gambleaware.org . New players only. Min dep £10. Wager req. 10x. 18+. T&Cs apply."
+    },
+    {
+      "name": "Videoslots Casino",
+      "welcome_bonus": "100% Welcome Bonus up to £50 + 11 Free Spins",
+      "wagering_requirement": 10,
+      "min_deposit": "£10",
+      "source_url": "https://www.gambling.com/uk/online-casinos/bonus",
+      "review_url": "https://www.gambling.com/uk/online-casinos/reviews/videoslots",
+      "needs_review": false,
+      "review_notes": [],
+      "raw_text": "3 100% Welcome Bonus up to £50 + 11 Free Spins Videoslots Casino Review Visit Casino Compare Added GC Verified by Gambling.com Licensed and regulated by the UK Gambling Commission. This operator meets strict standards for player safety, fair play and secure payments. 18+. Gamble Responsibly. Gambleaware.org . New players only. Min. dep. £10. Wager req. 10x. 18+.- Full Terms Apply"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casino Welcome Bonuses</title>
+<style>
+  :root { --bg:#fff; --fg:#1b1f24; --muted:#5d6670; --line:#dde1e6; --head:#f3f5f7; --accent:#0b57d0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#14171a; --fg:#e8eaed; --muted:#9aa3ad; --line:#2b3138; --head:#1d2227; --accent:#8ab4f8; }
+  }
+  body { margin:0; padding:16px; background:var(--bg); color:var(--fg);
+         font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  main { max-width:860px; margin:0 auto; }
+  h1 { font-size:1.4rem; margin:0 0 4px; }
+  .meta, .note { color:var(--muted); font-size:.85rem; }
+  table { width:100%; border-collapse:collapse; margin:16px 0; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--head); font-size:.85rem; text-transform:uppercase; letter-spacing:.03em; }
+  a { color:var(--accent); }
+  .flag { color:#b3261e; font-size:.8rem; }
+  #error { color:#b3261e; }
+
+  /* phones: each row becomes a card */
+  @media (max-width: 640px) {
+    thead { display:none; }
+    table, tbody, tr, td { display:block; width:100%; box-sizing:border-box; }
+    tr { border:1px solid var(--line); border-radius:8px; margin-bottom:12px; padding:4px 0; }
+    td { border:none; padding:6px 12px; }
+    td::before { content:attr(data-label); display:block; font-size:.75rem; color:var(--muted);
+                 text-transform:uppercase; letter-spacing:.03em; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Casino welcome bonuses</h1>
+  <p class="meta" id="meta">Loading…</p>
+  <p id="error" hidden></p>
+  <table id="table" hidden>
+    <thead>
+      <tr><th>Casino</th><th>Welcome bonus</th><th>Wagering</th><th>Min. deposit</th><th>Source</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <p class="note">18+ only. Data is scraped automatically and structured by a language model; always check the
+  casino's own terms before depositing. Gamble responsibly (BeGambleAware.org).</p>
+</main>
+<script>
+(async function () {
+  const meta = document.getElementById("meta");
+  const err = document.getElementById("error");
+  try {
+    const res = await fetch("casinos.json", { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+
+    const tbody = document.querySelector("#table tbody");
+    for (const c of data.casinos) {
+      const tr = document.createElement("tr");
+      const cells = [
+        ["Casino", c.name],
+        ["Welcome bonus", c.welcome_bonus ?? "n/a"],
+        ["Wagering", c.wagering_requirement === null || c.wagering_requirement === undefined
+                      ? "n/a"
+                      : (c.wagering_requirement === 0 ? "None" : c.wagering_requirement + "x")],
+        ["Min. deposit", c.min_deposit ?? "n/a"],
+      ];
+      for (const [label, value] of cells) {
+        const td = document.createElement("td");
+        td.dataset.label = label;
+        td.textContent = value;                // textContent: no HTML injection
+        tr.appendChild(td);
+      }
+      const src = document.createElement("td");
+      src.dataset.label = "Source";
+      const a = document.createElement("a");
+      a.href = c.source_url; a.textContent = "page"; a.rel = "noopener"; a.target = "_blank";
+      src.appendChild(a);
+      if (c.needs_review) {
+        const f = document.createElement("div");
+        f.className = "flag"; f.textContent = "needs manual check";
+        src.appendChild(f);
+      }
+      tr.appendChild(src);
+      tbody.appendChild(tr);
+    }
+    document.getElementById("table").hidden = false;
+    meta.textContent = "Source: " + data.source + " · updated " +
+      new Date(data.generated_at).toLocaleString() + " · structured by " + data.model;
+  } catch (e) {
+    meta.textContent = "";
+    err.hidden = false;
+    err.textContent = "Could not load casinos.json (" + e.message + "). Run scraper.py first, and serve this " +
+      "folder over HTTP (python -m http.server -d docs) rather than opening the file directly.";
+  }
+})();
+</script>
+</body>
+</html>
